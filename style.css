@@ -1,0 +1,134 @@
+body {
+     font-family: Montserrat, sans-serif;
+     background: black;
+     margin: 0;
+     padding: 40px;
+     display: flex;
+     justify-content: center;
+}
+
+#telaPrincipal {
+     background: black;
+     padding: 30px;
+     border-radius: 20px;
+     width: 400px;
+     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+h2 {
+    color: magenta;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 60px;
+    border: 2px solid magenta;
+    margin-bottom: 10px;
+    outline: none;
+    color: white;
+    background: black;
+}
+
+.grupo-botoes {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.grupo-botoes button {
+    flex: 1;
+    padding: 7px;
+    border-radius: 60px;
+    border: 2px solid magenta;
+    background: black;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.grupo-botoes: button:hover {
+    background: black;
+}
+
+button:disabled {
+     background-color: #888;
+     cursor: not-allowed;
+}
+
+#mensagem {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.sucesso {
+    color:pink;
+}
+
+.erro {
+    color: red;
+    border: 1px blue;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background: #111;
+    color: white;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.2s;
+}
+
+li:hover {
+    background: #222;
+}
+
+.btn-remover {
+    width: 30px;
+    height: 30px;
+    background: crimson;
+    color: white;
+    border: 1px solid magenta;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.btn-editar {
+    background: none;        /* Remove a cor de fundo */
+    border: none;            /* Remove a borda magenta/preta */
+    padding: 0;              /* Remove o espaço interno que empurra o emoji */
+    margin: 0;               /* Remove margens externas */
+    cursor: pointer;         /* Mantém a mãozinha ao passar o mouse */
+
+    font-size: 22px;         /* Ajuste o tamanho da engrenagem por aqui */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: transform 0.3s; /* Para a animação de girar */
+}
+
+/* Efeito opcional para ficar profissional */
+.btn-editar:hover {
+    transform: rotate(90deg); /* A engrenagem gira quando você encosta o mouse */
+    opacity: 0.8;             /* Dá um leve efeito de clique */
+}
+
+.acoes-lista {
+    display: flex;       /* Alinha os filhos (botões) em linha */
+    flex-direction: row; /* Garante que fiquem lado a lado */
+    gap: 12px;           /* Dá um espaço fixo entre a engrenagem e o X */
+    align-items: center; /* Alinha os dois verticalmente no meio */
+}
+
+}
