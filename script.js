@@ -123,3 +123,18 @@ inputBusca.addEventListener("keyup", () => {
 document.addEventListener("DOMContentLoaded", () => {
     atualizarLista();
 });
+
+// ... (resto do seu código acima)
+
+document.addEventListener("DOMContentLoaded", () => {
+    atualizarLista();
+});
+
+// COLOQUE AQUI:
+window.addEventListener('storage', (event) => {
+    if (event.key === 'dados') {
+        const novosDados = JSON.parse(event.newValue);
+        cadastro.dados = novosDados || [];
+        atualizarLista(inputBusca.value);
+    }
+});

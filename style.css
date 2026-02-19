@@ -1,10 +1,16 @@
 body {
-     font-family: Montserrat, sans-serif;
-     background: black;
-     margin: 0;
-     padding: 40px;
-     display: flex;
-     justify-content: center;
+    font-family: Montserrat, sans-serif;
+    margin: 0;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+
+    /* CONFIGURAÇÃO DA IMAGEM */
+    background-image: url('https://www.hdwallpapers.in/download/katana_anime_girl_4k-HD.jpg');
+    background-size: cover;      /* Faz a imagem cobrir a tela inteira sem distorcer */
+    background-position: center;  /* Centraliza a imagem na tela */
+    background-attachment: fixed; /* A imagem fica parada enquanto você rola a lista */
+    background-repeat: no-repeat; /* Impede que a imagem fique se repetindo */
 }
 
 #telaPrincipal {
