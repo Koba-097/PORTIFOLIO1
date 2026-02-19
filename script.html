@@ -1,16 +1,24 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>PORTFOLIO1</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="telaPrincipal" class="tela">
-        <h2>Cadastro portfolio</h2>
+
+<div id="login" class="tela">
+     <h2>Login</h2>
+     <input type="text" id="usuario" placeholder="Usuario">
+     <input type="password" id="senha" placeholder="Senha">
+     <button id="btnLogin">Entrar</button>
+     <p id="erro"></p>
+</div>
+    <div id="telaPrincipal" class="tela" style="display:none;">
+        <h2>Cadastro de Clientes</h2>
 
         <form id="formCadastro">
-            <input id="entrada" placeholder="Digite algo">
+            <input id="nome" placeholder="Nome">
 
             <div class="grupo-botoes">
                 <button type="submit" id="adicionar">Adicionar</button>

@@ -1,3 +1,13 @@
+if (localStorage.getItem("logado") === "true") {
+
+document.addEventListener("DOMConteneLoaded", () => {
+
+document.getElementById("login").style.display = "none";
+
+document.getElementById("telaPrincipal").style.display = "block";
+    });
+}
+
 class Cadastro {
     constructor() {
         const salvo = localStorage.getItem("dados");
@@ -28,6 +38,18 @@ class Cadastro {
 
 const cadastro = new Cadastro();
 const entrada = document.getElementById("entrada");
+const telaLogin =
+document.getElementById("login");
+const telaPrincipal =
+document.getElementById("telaPrincipal");
+const btnLogin =
+document.getElementById("btnLogin");
+const usuarioInput =
+document.getElementById("usuario");
+const senhaInput =
+document.getElementById("senha");
+const erroLogin =
+document.getElementById("erro");
 const lista = document.getElementById("lista");
 const mensagem = document.getElementById("mensagem");
 const botaoAdicionar = document.getElementById("adicionar");
@@ -124,13 +146,28 @@ document.addEventListener("DOMContentLoaded", () => {
     atualizarLista();
 });
 
-// ... (resto do seu código acima)
-
 document.addEventListener("DOMContentLoaded", () => {
     atualizarLista();
 });
 
-// COLOQUE AQUI:
+if (bntLogin) {
+    btnLogin.addEventListener("click", () => {
+        const usuarioCorreto = "admin";
+        const senhaCorreta = "1234"
+
+        if (
+            usuarioInput.value === usuarioCorreto &&
+            senhaInput.value === senhaCorreta
+        ) {
+           localStorage.setItem("logado", "true");
+           telaLogin.style.display = "block";
+           } else {
+               erroLogin.innerText = "Usuario ou senha incorretos";
+           }
+     });
+}
+
+
 window.addEventListener('storage', (event) => {
     if (event.key === 'dados') {
         const novosDados = JSON.parse(event.newValue);
