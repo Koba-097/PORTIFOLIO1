@@ -1,13 +1,41 @@
-if (localStorage.getItem("logado") === "true") {
+// ===== LOGIN =====
+document.addEventListener("DOMContentLoaded", () => {
 
-document.addEventListener("DOMConteneLoaded", () => {
+    const telaLogin = document.getElementById("login");
+    const telaPrincipal = document.getElementById("telaPrincipal");
+    const btnLogin = document.getElementById("btnLogin");
+    const usuarioInput = document.getElementById("usuario");
+    const senhaInput = document.getElementById("senha");
+    const erroLogin = document.getElementById("erro");
 
-document.getElementById("login").style.display = "none";
+    // Se já estiver logado
+    if (localStorage.getItem("logado") === "true") {
+        telaLogin.style.display = "none";
+        telaPrincipal.style.display = "block";
+    }
 
-document.getElementById("telaPrincipal").style.display = "block";
+    // Evento do botão entrar
+    btnLogin.addEventListener("click", () => {
+        const usuarioCorreto = "admin";
+        const senhaCorreta = "1234";
+
+        if (
+            usuarioInput.value === usuarioCorreto &&
+            senhaInput.value === senhaCorreta
+        ) {
+            localStorage.setItem("logado", "true");
+            telaLogin.style.display = "none";
+            telaPrincipal.style.display = "block";
+        } else {
+            erroLogin.innerText = "Usuário ou senha incorretos";
+        }
     });
-}
 
+    atualizarLista(); // Atualiza lista ao carregar
+});
+
+
+// ===== CLASSE =====
 class Cadastro {
     constructor() {
         const salvo = localStorage.getItem("dados");
@@ -15,60 +43,56 @@ class Cadastro {
         this.dados = Array.isArray(dadosParseados) ? dadosParseados : [];
         this.idSendoEditado = null;
     }
+
     salvar() {
         localStorage.setItem("dados", JSON.stringify(this.dados));
     }
+
     adicionar(valor) {
         this.dados.push(valor);
         this.salvar();
     }
+
     editar(indice, valor) {
         this.dados[indice] = valor;
         this.salvar();
     }
+
     remover(indice) {
         this.dados.splice(indice, 1);
         this.salvar();
     }
+
     limpar() {
         this.dados = [];
         this.salvar();
     }
 }
 
+
+// ===== ELEMENTOS PRINCIPAIS =====
 const cadastro = new Cadastro();
-const entrada = document.getElementById("entrada");
-const telaLogin =
-document.getElementById("login");
-const telaPrincipal =
-document.getElementById("telaPrincipal");
-const btnLogin =
-document.getElementById("btnLogin");
-const usuarioInput =
-document.getElementById("usuario");
-const senhaInput =
-document.getElementById("senha");
-const erroLogin =
-document.getElementById("erro");
+const entrada = document.getElementById("nome");
 const lista = document.getElementById("lista");
 const mensagem = document.getElementById("mensagem");
 const botaoAdicionar = document.getElementById("adicionar");
 const botaoLimpar = document.getElementById("limpar");
 const inputBusca = document.getElementById("busca");
 
+
+// ===== ATUALIZAR LISTA =====
 function atualizarLista(filtro = "") {
     lista.innerHTML = "";
+
     cadastro.dados.forEach((item, index) => {
         if (!item.toLowerCase().includes(filtro.toLowerCase())) return;
 
         const li = document.createElement("li");
 
-        // 1. TEXTO
         const span = document.createElement("span");
         span.innerText = item;
         span.style.color = "white";
 
-        // 2. BOTÃO EDITAR (ENGRENAGEM)
         const btnEditar = document.createElement("button");
         btnEditar.innerHTML = '⚙️';
         btnEditar.classList.add("btn-editar");
@@ -78,7 +102,6 @@ function atualizarLista(filtro = "") {
             entrada.focus();
         };
 
-        // 3. BOTÃO REMOVER (X)
         const btnRemover = document.createElement("button");
         btnRemover.innerText = "x";
         btnRemover.classList.add("btn-remover");
@@ -87,20 +110,19 @@ function atualizarLista(filtro = "") {
             atualizarLista(inputBusca.value);
         };
 
-        // 4. DIV PARA AGRUPAR OS BOTÕES (Dando o efeito "fixo" um do lado do outro)
         const divAcoes = document.createElement("div");
         divAcoes.classList.add("acoes-lista");
         divAcoes.appendChild(btnEditar);
         divAcoes.appendChild(btnRemover);
 
-        // 5. MONTAGEM FINAL DO ITEM DA LISTA
         li.appendChild(span);
         li.appendChild(divAcoes);
         lista.appendChild(li);
     });
 }
 
-// CORREÇÃO AQUI: Organizei as chaves { } do botão adicionar
+
+// ===== EVENTOS =====
 botaoAdicionar.addEventListener("click", function (e) {
     e.preventDefault();
     const valor = entrada.value.trim();
@@ -120,7 +142,7 @@ botaoAdicionar.addEventListener("click", function (e) {
         if (cadastro.dados.includes(valor)) {
             mensagem.innerText = "Nome já existe";
             mensagem.className = "erro";
-            return; // Adicionado return para não duplicar se já existir
+            return;
         }
         cadastro.adicionar(valor);
         mensagem.innerText = "Adicionado";
@@ -142,32 +164,8 @@ inputBusca.addEventListener("keyup", () => {
     atualizarLista(inputBusca.value);
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    atualizarLista();
-});
 
-document.addEventListener("DOMContentLoaded", () => {
-    atualizarLista();
-});
-
-if (bntLogin) {
-    btnLogin.addEventListener("click", () => {
-        const usuarioCorreto = "admin";
-        const senhaCorreta = "1234"
-
-        if (
-            usuarioInput.value === usuarioCorreto &&
-            senhaInput.value === senhaCorreta
-        ) {
-           localStorage.setItem("logado", "true");
-           telaLogin.style.display = "block";
-           } else {
-               erroLogin.innerText = "Usuario ou senha incorretos";
-           }
-     });
-}
-
-
+// ===== SINCRONIZAÇÃO ENTRE ABAS =====
 window.addEventListener('storage', (event) => {
     if (event.key === 'dados') {
         const novosDados = JSON.parse(event.newValue);
