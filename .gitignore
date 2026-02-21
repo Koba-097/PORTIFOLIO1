@@ -1,0 +1,14 @@
+node_modules/
+dist/
+build/
+
+*.db
+*.sqlite
+*.log
+
+.idea/
+.vscode/
+.venv/
+venv/
+env/
+.DS_Store
