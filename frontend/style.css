@@ -136,3 +136,28 @@ li:hover {
     gap: 12px;           /* Dá um espaço fixo entre a engrenagem e o X */
     align-items: center; /* Alinha os dois verticalmente no meio */
 }
+
+@media (max-width: 600px) {
+   body {
+       background-image: url('https://storage.ko-fi.com/cdn/useruploads/display/93080b73-595e-427b-8143-f8f3d66563a2_master-swordx1.gif');
+       background-size: cover;
+       background-position: center;
+       padding: 15px;
+   }
+
+   #telaPrincipal, #login {
+       width: 100%;
+       max-width: 350px;
+       padding: 20px;
+       box-sizing: border-box;
+   }
+
+   input, .grupo-botoes button {
+       font-size: 16px;
+       height: 45px;
+   }
+
+   .acoes-lista {
+       gap: 20px;
+   }
+}

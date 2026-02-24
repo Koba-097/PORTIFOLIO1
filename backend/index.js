@@ -42,8 +42,22 @@ async function start() {
 
 
 //inicia server-----------------------------------
-    app.listen(3000, () => {
-    console.log('🚀 SERVIDOR RODANDO EM http://localhost:3000');
+    app.listen(PORT, '0.0.0.0', () => {
+        const os = require('os');
+        const interfaces = os.networkInterfaces();
+        let ipLocal = 'localhost';
+
+        for (let nome in interfaces) {
+            for (let iface of interfaces[nome]) {
+                if (iface.family === 'IPv4' && !iface.internal) {
+                    ipLocal = iface.address;
+                }
+            }
+        }
+
+    console.log('🚀 SERVIDOR RODANDO');
+    console.log('No PC: http//localhost:' + PORT);
+    console.log('No Celular: http://' + ipLocal + ':' + PORT);
     });
 }
 
