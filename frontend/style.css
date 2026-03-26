@@ -348,3 +348,41 @@ html, body {
 a, button, input {
     cursor: none;
 }
+
+/* ===== BOTOES CILINDRO - AJUSTE DE TAMANHO E FONTE ===== */
+
+#btnLogin, #btnRegistrar {
+    /* Tamanho controlado */
+    width: 200px !important;    /* Largura fixa para não ficar gigante */
+    height: 40px !important;    /* Altura fixa de botão padrão */
+    margin: 15px auto !important; /* Centraliza e dá espaço */
+    display: flex !important;
+
+    /* Formato Cilindro */
+    border-radius: 20px !important; /* Metade da altura = Cilindro perfeito */
+    border: 2px solid #39eaff !important;
+    background-color: black !important;
+
+    /* Letra e Alinhamento */
+    color: white !important;
+    font-family: Arial, sans-serif !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    text-transform: uppercase !important;
+    align-items: center !important;
+    justify-content: center !important;
+    letter-spacing: 1px !important;
+
+    /* Reset de efeitos estranhos */
+    padding: 0 !important;
+    line-height: normal !important;
+    transition: all 0.3s ease !important;
+    cursor: none !important;
+}
+
+/* Efeito de Hover */
+#btnLogin:hover, #btnRegistrar:hover {
+    background-color: #39eaff !important;
+    color: black !important;
+    box-shadow: 0 0 10px rgba(57, 234, 255, 0.5) !important;
+}

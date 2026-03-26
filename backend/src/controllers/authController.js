@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { getDb } = require("../config/database");
 
-const SECRET = process.env.JWT_SECRET || "segredo";
+const SECRET = process.env.JWT_SECRET;
 
 exports.register = async (req, res) => {
     const db = getDb();
