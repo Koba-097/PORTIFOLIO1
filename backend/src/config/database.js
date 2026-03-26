@@ -10,16 +10,16 @@ async function connectDatabase() {
         driver: sqlite3.Database
     });
 
-    // tabela de usuários
+    // 1. Criação das tabelas (se não existirem)
     await db.exec(`
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             email TEXT UNIQUE NOT NULL,
-            password TEXT NOT NULL
+            password TEXT,
+            googleId TEXT UNIQUE
         );
     `);
 
-    // tabela de clientes
     await db.exec(`
         CREATE TABLE IF NOT EXISTS clientes (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -29,15 +29,28 @@ async function connectDatabase() {
         );
     `);
 
-    // tenta adicionar coluna email
+    // 2. Garantir que a coluna 'googleId' exista na tabela 'users'
+    // (Caso a tabela tenha sido criada antes de você adicionar o campo no código)
+    try {
+        await db.exec(`ALTER TABLE users ADD COLUMN googleId TEXT UNIQUE`);
+        console.log("Coluna googleId adicionada com sucesso na tabela users.");
+    } catch (error) {
+        if (error.message.includes("duplicate column name")) {
+            console.log("Coluna googleId já existe na tabela users.");
+        } else {
+            console.error("Erro ao verificar coluna googleId:", error.message);
+        }
+    }
+
+    // 3. Garantir que a coluna 'email' exista na tabela 'clientes'
     try {
         await db.exec(`ALTER TABLE clientes ADD COLUMN email TEXT`);
         console.log("Coluna email adicionada na tabela clientes.");
     } catch (error) {
         if (error.message.includes("duplicate column name")) {
-            console.log("Coluna email já existe.");
+            console.log("Coluna email já existe em clientes.");
         } else {
-            console.error("Erro ao alterar tabela:", error);
+            console.error("Erro ao alterar tabela clientes:", error);
         }
     }
 

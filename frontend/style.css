@@ -386,3 +386,27 @@ a, button, input {
     color: black !important;
     box-shadow: 0 0 10px rgba(57, 234, 255, 0.5) !important;
 }
+/* BOTAO GOOGLE */
+.btn-google {
+    width: 200px;
+    height: 40px;
+    margin: 15px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    border-radius: 20px;
+    border: 2px solid #4285F4;
+    background: black;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-google:hover {
+    background: #4285F4;
+    color: black;
+    box-shadow: 0 0 10px rgba(66, 133, 244, 0.5);
+}
